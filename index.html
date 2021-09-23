@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slides de présentation Alpine.js</title>
+    <script src="assets/js/app.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+    <main>
+        <div x-data="slideshow()" x-init="init()">
+            <div>
+                <template x-for="item of items">
+                    <section :style="`background-image: url(${item.image})`">
+                        <template x-if="item.id !== 0">
+                            <a href="#" class="previous"
+                               @dblclick.prevent="firstSlide()"
+                               @click.prevent="previousSlide()"></a>
+                        </template>
+
+                        <div class="overlay"></div>
+
+                        <h2 x-text="item.text.toUpperCase()"></h2>
+
+                        <a>Explore it</a>
+
+                        <template x-if="item.id < items.length - 1">
+                            <a href="#" class="next"
+                               @dblclick.prevent="lastSlide()"
+                               @click.prevent="nextSlide()"></a>
+                        </template>
+                    </section>
+                </template>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
