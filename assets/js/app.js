@@ -1,3 +1,6 @@
+const INIT = 1;
+const REMOVE = 2;
+
 const slideshow = () => ({
     componentName: 'slide-list',
     $el: null,
@@ -167,27 +170,26 @@ const slideshow = () => ({
         }, 5);
     },
 
+    /**
+     * @param {INIT|REMOVE} type 
+     */
+    events(type) {
+        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('mousedown', this.handleMouseDown.bind(this));
+        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('mouseup', this.handleMouseUp.bind(this));
+        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('mousemove', this.handleMouseMove.bind(this));
+        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('mouseleave', this.handleMouseLeave.bind(this));
+        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('touchstart', this.handleToucheStart.bind(this));
+        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('touchend', this.handleToucheEnd.bind(this));
+        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('touchmove', this.handleToucheMove.bind(this));
+    },
+
     init() {
         this.$el.setAttribute('data-component', this.componentName);
 
         this.items = this.items.map((e, i) => ({...e, id: i}))
 
-        this.$el.addEventListener('mousedown', this.handleMouseDown.bind(this));
-        this.$el.addEventListener('mouseup', this.handleMouseUp.bind(this));
-        this.$el.addEventListener('mousemove', this.handleMouseMove.bind(this));
-        this.$el.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
-        this.$el.addEventListener('touchstart', this.handleToucheStart.bind(this));
-        this.$el.addEventListener('touchend', this.handleToucheEnd.bind(this));
-        this.$el.addEventListener('touchmove', this.handleToucheMove.bind(this));
+        this.events(INIT);
 
-        return () => {
-            this.$el.removeEventListener('mousedown', this.handleMouseDown.bind(this));
-            this.$el.removeEventListener('mouseup', this.handleMouseUp.bind(this));
-            this.$el.removeEventListener('mousemove', this.handleMouseMove.bind(this));
-            this.$el.removeEventListener('mouseleave', this.handleMouseLeave.bind(this));
-            this.$el.removeEventListener('touchstart', this.handleToucheStart.bind(this));
-            this.$el.removeEventListener('touchend', this.handleToucheEnd.bind(this));
-            this.$el.removeEventListener('touchmove', this.handleToucheMove.bind(this));
-        };
+        return () => this.events(REMOVE);
     }
 });

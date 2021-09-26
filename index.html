@@ -11,7 +11,7 @@
     <main>
         <div x-data="slideshow()" x-init="init()">
             <div>
-                <template x-for="item of items">
+                <!--<template x-for="item of items">
                     <section :style="`background-image: url(${item.image})`">
                         <template x-if="item.id !== 0">
                             <a href="#" class="previous"
@@ -31,7 +31,63 @@
                                @click.prevent="nextSlide()"></a>
                         </template>
                     </section>
-                </template>
+                </template>-->
+
+                <section :style="`background-image: url(${item.image})`" style="background-image: url(https://images.unsplash.com/photo-1577495508326-19a1b3cf65b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=967&amp;q=80)">
+                    <div class="overlay"></div>
+
+                    <h2 x-text="item.text.toUpperCase()">ITEM 1</h2>
+
+                    <a>Explore it</a>
+
+                    <a href="#" class="next" @dblclick.prevent="lastSlide()" @click.prevent="nextSlide()"></a>
+                </section>
+            
+                <section :style="`background-image: url(${item.image})`" style="background-image: url(https://images.unsplash.com/photo-1609766857326-18a204c2cf31?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1050&amp;q=80)">
+                    <a href="#" class="previous" @dblclick.prevent="firstSlide()" @click.prevent="previousSlide()"></a>
+                    
+                    <div class="overlay"></div>
+
+                    <h2 x-text="item.text.toUpperCase()">ITEM 2</h2>
+
+                    <a>Explore it</a>
+
+                    <a href="#" class="next" @dblclick.prevent="lastSlide()" @click.prevent="nextSlide()"></a>
+                </section>
+            
+                <section :style="`background-image: url(${item.image})`" style="background-image: url(https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1054&amp;q=80)">
+                    <a href="#" class="previous" @dblclick.prevent="firstSlide()" @click.prevent="previousSlide()"></a>
+                    
+                    <div class="overlay"></div>
+
+                    <h2 x-text="item.text.toUpperCase()">ITEM 3</h2>
+
+                    <a>Explore it</a>
+
+                    <a href="#" class="next" @dblclick.prevent="lastSlide()" @click.prevent="nextSlide()"></a>
+                </section>
+            
+                <section :style="`background-image: url(${item.image})`" style="background-image: url(https://images.unsplash.com/photo-1566908829550-e6551b00979b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1049&amp;q=80)">
+                    <a href="#" class="previous" @dblclick.prevent="firstSlide()" @click.prevent="previousSlide()"></a>
+                    
+                    <div class="overlay"></div>
+
+                    <h2 x-text="item.text.toUpperCase()">ITEM 4</h2>
+
+                    <a>Explore it</a>
+
+                    <a href="#" class="next" @dblclick.prevent="lastSlide()" @click.prevent="nextSlide()"></a>
+                </section>
+        
+                <section :style="`background-image: url(${item.image})`" style="background-image: url(https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=967&amp;q=80)">
+                    <a href="#" class="previous" @dblclick.prevent="firstSlide()" @click.prevent="previousSlide()"></a>
+                    
+                    <div class="overlay"></div>
+
+                    <h2 x-text="item.text.toUpperCase()">ITEM 5</h2>
+
+                    <a>Explore it</a>
+                </section>
             </div>
         </div>
     </main>
