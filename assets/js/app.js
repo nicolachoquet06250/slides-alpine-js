@@ -39,8 +39,6 @@ const slideshow = () => ({
     velocity: 0,
     rafID: null,
 
-    isSimpleClick: false,
-
     handleMouseDown(e) {
         this.holding = true;
         this.firstClickX = e.pageX - this.$el.offsetLeft;
@@ -111,70 +109,6 @@ const slideshow = () => ({
         }
     },
 
-    nextSlide() {
-        this.isSimpleClick = true;
-
-        setTimeout(() => {
-            if (this.isSimpleClick) {
-                let scrollAmount = 0;
-                const slideTimer = setInterval(() => {
-                    this.$el.scrollLeft += 10;
-                    scrollAmount += 10;
-                    if (scrollAmount >= this.$el.querySelector('section').offsetWidth + 5) {
-                        clearInterval(slideTimer);
-                    }
-                }, 5);
-
-                this.isSimpleClick = false;
-            }
-        }, 250);
-    },
-
-    previousSlide() {
-        this.isSimpleClick = true;
-
-        setTimeout(() => {
-            if (this.isSimpleClick) {
-                let scrollAmount = 0;
-                const slideTimer = setInterval(() => {
-                    this.$el.scrollLeft -= 10;
-                    scrollAmount += 10;
-                    if (scrollAmount >= this.$el.querySelector('section').offsetWidth + 5) {
-                        clearInterval(slideTimer);
-                    }
-                }, 5);
-
-                this.isSimpleClick = false;
-            }
-        }, 250);
-    },
-
-    lastSlide() {
-        this.isSimpleClick = false;
-
-        let scrollAmount = 0;
-        const slideTimer = setInterval(() => {
-            this.$el.scrollLeft += 10;
-            scrollAmount += 10;
-            if (scrollAmount >= Math.max(Array.from(this.$el.querySelectorAll('section')).reduce((r, c) => r + c.offsetWidth + 5, this.$el.scrollLeft), 0)) {
-                clearInterval(slideTimer);
-            }
-        }, 5);
-    },
-
-    firstSlide() {
-        this.isSimpleClick = false;
-
-        let scrollAmount = 0;
-        const slideTimer = setInterval(() => {
-            this.$el.scrollLeft -= 10;
-            scrollAmount += 10;
-            if (scrollAmount >= Math.max(Array.from(this.$el.querySelectorAll('section')).reduce((r, c) => r + c.offsetWidth + 5, this.$el.scrollLeft), 0)) {
-                clearInterval(slideTimer);
-            }
-        }, 5);
-    },
-
     /**
      * @param {INIT|REMOVE} type 
      */
@@ -196,5 +130,94 @@ const slideshow = () => ({
         this.events(INIT);
 
         return () => this.events(REMOVE);
+    }
+});
+
+const slide = () => ({
+    componentName: 'slide',
+    $el: null,
+
+    isSimpleClick: false,
+
+    get item() {
+        return JSON.parse(this.$el.parentElement.getAttribute('data-item'));
+    },
+
+    get template() {
+        return document.querySelector(this.item.template).innerHTML;
+    },
+
+    nextSlide() {
+        this.isSimpleClick = true;
+
+        setTimeout(() => {
+            if (this.isSimpleClick) {
+                let scrollAmount = 0;
+                const slideTimer = setInterval(() => {
+                    this.$el.parentElement.parentElement.parentElement.scrollLeft += 10;
+                    
+                    scrollAmount += 10;
+                    if (scrollAmount >= this.$el.offsetWidth + 15) {
+                        clearInterval(slideTimer);
+                    }
+                }, 5);
+
+                this.isSimpleClick = false;
+            }
+        }, 250);
+    },
+
+    previousSlide() {
+        this.isSimpleClick = true;
+
+        setTimeout(() => {
+            if (this.isSimpleClick) {
+                let scrollAmount = 0;
+                const slideTimer = setInterval(() => {
+                    this.$el.parentElement.parentElement.parentElement.scrollLeft -= 10;
+
+                    scrollAmount += 10;
+                    if (scrollAmount >= this.$el.offsetWidth + 5) {
+                        clearInterval(slideTimer);
+                    }
+                }, 5);
+
+                this.isSimpleClick = false;
+            }
+        }, 250);
+    },
+
+    lastSlide() {
+        this.isSimpleClick = false;
+
+        let scrollAmount = 0;
+        const slideTimer = setInterval(() => {
+            this.$el.parentElement.parentElement.parentElement.scrollLeft += 10;
+
+            scrollAmount += 10;
+            if (scrollAmount >= Math.max(Array.from(this.$el.parentElement.parentElement.querySelectorAll('section')).reduce((r, c) => r + c.offsetWidth + 5, this.$el.scrollLeft), 0)) {
+                clearInterval(slideTimer);
+            }
+        }, 5);
+    },
+
+    firstSlide() {
+        this.isSimpleClick = false;
+
+        let scrollAmount = 0;
+        const slideTimer = setInterval(() => {
+            this.$el.parentElement.parentElement.parentElement.scrollLeft -= 10;
+
+            scrollAmount += 10;
+            if (scrollAmount >= Math.max(Array.from(this.$el.parentElement.parentElement.querySelectorAll('section')).reduce((r, c) => r + c.offsetWidth + 5, this.$el.scrollLeft), 0)) {
+                clearInterval(slideTimer);
+            }
+        }, 5);
+    },
+
+    init() {
+        this.nbItems = this.item.nbItems;
+        this.$el.setAttribute('x-html', 'template');
+        this.$el.style.backgroundImage = `url(${this.item.image})`;
     }
 });

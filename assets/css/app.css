@@ -11,8 +11,9 @@ body {
   background: #f2f2f2;
 }
 
-[data-component="slide-list"] {
-  margin-top: 10px;
+[data-component=slide-list] {
+  margin: 10px;
+  margin-right: 0px;
   overflow: hidden;
   /*scroll-behavior: smooth;*/
   min-height: 60vmin;
@@ -20,34 +21,31 @@ body {
   position: relative;
   height: calc(100vmin - 20px);
 }
-
-[data-component="slide-list"]:active {
+[data-component=slide-list]:active {
   cursor: grabbing;
 }
-
-[data-component="slide-list"] > div {
+[data-component=slide-list] > div {
   position: absolute;
   height: 100%;
   display: flex;
   pointer-events: none;
 }
-
-[data-component="slide-list"] > div section {
+[data-component=slide-list] > div > div {
+  width: 201vmin;
+}
+[data-component=slide-list] > div > div section {
   flex-shrink: 0;
   height: 100%;
-  /*width: 80vmin;*/
-  width: 201vmin;
   color: #fff;
   background-size: cover;
   background-position: center;
   position: relative;
+  margin-right: 10px;
 }
-
-[data-component="slide-list"] > div section:not(:nth-child(1)) {
+[data-component=slide-list] > div > div section:not(:nth-child(1)) {
   margin-left: 10px;
 }
-
-[data-component="slide-list"] > div section > div {
+[data-component=slide-list] > div > div section > div {
   position: absolute;
   top: 0;
   left: 0;
@@ -55,20 +53,17 @@ body {
   bottom: 0;
   background: rgba(0, 0, 0, 0.15);
 }
-
-[data-component="slide-list"] > div section h2, [data-component="slide-list"] > div section a {
+[data-component=slide-list] > div > div section h2, [data-component=slide-list] > div > div section a {
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.39);
 }
-
-[data-component="slide-list"] > div section h2 {
+[data-component=slide-list] > div > div section h2 {
   position: absolute;
   top: clamp(10px, 2vw, 20px);
   left: clamp(10px, 2vw, 20px);
   font-size: clamp(20px, 3vw, 40px);
   font-weight: 300;
 }
-
-[data-component="slide-list"] > div section a {
+[data-component=slide-list] > div > div section a {
   position: absolute;
   bottom: clamp(10px, 2vw, 20px);
   right: clamp(10px, 2vw, 20px);
@@ -77,8 +72,7 @@ body {
   color: #fff;
   pointer-events: auto;
 }
-
-[data-component="slide-list"] > div section .next, [data-component="slide-list"] > div section .previous {
+[data-component=slide-list] > div > div section .next, [data-component=slide-list] > div > div section .previous {
   display: block;
   font-size: 3rem;
   height: 100%;
@@ -88,14 +82,12 @@ body {
   top: 0;
   bottom: 0;
 }
-
-[data-component="slide-list"] > div section .next {
+[data-component=slide-list] > div > div section .next {
   right: 0;
   left: auto;
 }
-
-[data-component="slide-list"] > div section .next:after {
-  content: '>';
+[data-component=slide-list] > div > div section .next:after {
+  content: ">";
   display: block;
   position: absolute;
   top: 50%;
@@ -105,9 +97,8 @@ body {
   transform: translateX(0);
   animation: treadmill_next 1s linear infinite;
 }
-
-[data-component="slide-list"] > div section .next:before {
-  content: '>';
+[data-component=slide-list] > div > div section .next:before {
+  content: ">";
   display: block;
   position: absolute;
   top: 50%;
@@ -116,16 +107,14 @@ body {
   opacity: 1;
   transform: translateX(0);
   animation: treadmill_next 1s linear infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
 }
-
-[data-component="slide-list"] > div section .previous {
+[data-component=slide-list] > div > div section .previous {
   right: auto;
   left: 0;
 }
-
-[data-component="slide-list"] > div section .previous:after {
-  content: '>';
+[data-component=slide-list] > div > div section .previous:after {
+  content: ">";
   display: block;
   position: absolute;
   top: 50%;
@@ -134,11 +123,10 @@ body {
   opacity: 1;
   transform: translateX(0) rotateY(180deg);
   animation: treadmill_previous 1s linear infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
 }
-
-[data-component="slide-list"] > div section .previous:before {
-  content: '>';
+[data-component=slide-list] > div > div section .previous:before {
+  content: ">";
   display: block;
   position: absolute;
   top: 50%;
@@ -163,7 +151,6 @@ body {
     transform: translateX(6px);
   }
 }
-
 @keyframes treadmill_previous {
   25% {
     opacity: 0.5;
@@ -177,5 +164,4 @@ body {
     opacity: 0.5;
     transform: translateX(6px) rotateY(180deg);
   }
-}
-/*# sourceMappingURL=app.css.map */
+}/*# sourceMappingURL=app.css.map */

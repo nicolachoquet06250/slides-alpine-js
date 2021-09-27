@@ -12,28 +12,112 @@
         <div x-data="slideshow()" x-init="init()">
             <div>
                 <template x-for="item of items">
-                    <section :style="`background-image: url(${item.image})`">
-                        <template x-if="item.id !== 0">
-                            <a href="#" class="previous"
-                               @dblclick.prevent="firstSlide()"
-                               @click.prevent="previousSlide()"></a>
-                        </template>
-
-                        <div class="overlay"></div>
-
-                        <h2 x-text="item.text.toUpperCase()"></h2>
-
-                        <a>Explore it</a>
-
-                        <template x-if="item.id < items.length - 1">
-                            <a href="#" class="next"
-                               @dblclick.prevent="lastSlide()"
-                               @click.prevent="nextSlide()"></a>
-                        </template>
-                    </section>
+                    <div :data-item="JSON.stringify({...item, nbItems: items.length})">
+                        <section x-data="slide()" x-init="init()"></section>
+                    </div>
                 </template>
             </div>
         </div>
     </main>
+
+    <template id="item-1">
+        <template x-if="item.id !== 0">
+            <a href="#" class="previous"
+               @dblclick.prevent="firstSlide()"
+               @click.prevent="previousSlide()"></a>
+        </template>
+
+        <div class="overlay"></div>
+
+        <h2 x-text="item.text.toUpperCase()"></h2>
+
+        <a>Explore it</a>
+
+        <template x-if="item.id < nbItems - 1">
+            <a href="#" class="next"
+               @dblclick.prevent="lastSlide()"
+               @click.prevent="nextSlide()"></a>
+        </template>
+    </template>
+
+    <template id="item-2">
+        <template x-if="item.id !== 0">
+            <a href="#" class="previous"
+               @dblclick.prevent="firstSlide()"
+               @click.prevent="previousSlide()"></a>
+        </template>
+
+        <div class="overlay"></div>
+
+        <h2 x-text="item.text.toUpperCase()"></h2>
+
+        <a>Explore it</a>
+
+        <template x-if="item.id < nbItems - 1">
+            <a href="#" class="next"
+               @dblclick.prevent="lastSlide()"
+               @click.prevent="nextSlide()"></a>
+        </template>
+    </template>
+
+    <template id="item-3">
+        <template x-if="item.id !== 0">
+            <a href="#" class="previous"
+               @dblclick.prevent="firstSlide()"
+               @click.prevent="previousSlide()"></a>
+        </template>
+
+        <div class="overlay"></div>
+
+        <h2 x-text="item.text.toUpperCase()"></h2>
+
+        <a>Explore it</a>
+
+        <template x-if="item.id < nbItems - 1">
+            <a href="#" class="next"
+               @dblclick.prevent="lastSlide()"
+               @click.prevent="nextSlide()"></a>
+        </template>
+    </template>
+
+    <template id="item-4">
+        <template x-if="item.id !== 0">
+            <a href="#" class="previous"
+               @dblclick.prevent="firstSlide()"
+               @click.prevent="previousSlide()"></a>
+        </template>
+
+        <div class="overlay"></div>
+
+        <h2 x-text="item.text.toUpperCase()"></h2>
+
+        <a>Explore it</a>
+
+        <template x-if="item.id < nbItems - 1">
+            <a href="#" class="next"
+               @dblclick.prevent="lastSlide()"
+               @click.prevent="nextSlide()"></a>
+        </template>
+    </template>
+
+    <template id="item-5">
+        <template x-if="item.id !== 0">
+            <a href="#" class="previous"
+               @dblclick.prevent="firstSlide()"
+               @click.prevent="previousSlide()"></a>
+        </template>
+
+        <div class="overlay"></div>
+
+        <h2 x-text="item.text.toUpperCase()"></h2>
+
+        <a>Explore it</a>
+
+        <template x-if="item.id < nbItems - 1">
+            <a href="#" class="next"
+               @dblclick.prevent="lastSlide()"
+               @click.prevent="nextSlide()"></a>
+        </template>
+    </template>
 </body>
 </html>
