@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 ::before,
 ::after {
@@ -15,7 +16,6 @@ body {
   margin: 10px;
   margin-right: 0px;
   overflow: hidden;
-  /*scroll-behavior: smooth;*/
   min-height: 60vmin;
   cursor: grab;
   position: relative;
@@ -29,11 +29,20 @@ body {
   height: 100%;
   display: flex;
   pointer-events: none;
+  -moz-user-select: none;
+  /* Firefox */
+  -webkit-user-select: none;
+  /* Chrome, Safari, Opéra depuis la version 15 */
+  -ms-user-select: none;
+  /* Internet explorer depuis la version 10 et Edge */
+  user-select: none;
+  /* Propriété standard */
 }
 [data-component=slide-list] > div > div {
-  width: 201vmin;
+  width: var(--screen-width, 201vmin);
 }
-[data-component=slide-list] > div > div section {
+
+section[data-component=slide] {
   flex-shrink: 0;
   height: 100%;
   color: #fff;
@@ -42,10 +51,18 @@ body {
   position: relative;
   margin-right: 10px;
 }
-[data-component=slide-list] > div > div section:not(:nth-child(1)) {
+section[data-component=slide]:not(:nth-child(1)) {
   margin-left: 10px;
 }
-[data-component=slide-list] > div > div section > div {
+section[data-component=slide] > img {
+  margin-top: var(--mt, none);
+  width: 100%;
+  height: auto;
+}
+section[data-component=slide] .slide-body {
+  height: 100%;
+}
+section[data-component=slide] .slide-body .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -53,17 +70,17 @@ body {
   bottom: 0;
   background: rgba(0, 0, 0, 0.15);
 }
-[data-component=slide-list] > div > div section h2, [data-component=slide-list] > div > div section a {
+section[data-component=slide] .slide-body .overlay + h2, section[data-component=slide] .slide-body .overlay + h2 + div + a {
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.39);
 }
-[data-component=slide-list] > div > div section h2 {
+section[data-component=slide] .slide-body .overlay + h2 {
   position: absolute;
   top: clamp(10px, 2vw, 20px);
   left: clamp(10px, 2vw, 20px);
   font-size: clamp(20px, 3vw, 40px);
   font-weight: 300;
 }
-[data-component=slide-list] > div > div section a {
+section[data-component=slide] .slide-body .overlay + h2 + div + a {
   position: absolute;
   bottom: clamp(10px, 2vw, 20px);
   right: clamp(10px, 2vw, 20px);
@@ -72,7 +89,8 @@ body {
   color: #fff;
   pointer-events: auto;
 }
-[data-component=slide-list] > div > div section .next, [data-component=slide-list] > div > div section .previous {
+section[data-component=slide] .next, section[data-component=slide] .previous {
+  color: black;
   display: block;
   font-size: 3rem;
   height: 100%;
@@ -81,12 +99,13 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
+  pointer-events: auto;
 }
-[data-component=slide-list] > div > div section .next {
+section[data-component=slide] .next {
   right: 0;
   left: auto;
 }
-[data-component=slide-list] > div > div section .next:after {
+section[data-component=slide] .next:after {
   content: ">";
   display: block;
   position: absolute;
@@ -97,7 +116,7 @@ body {
   transform: translateX(0);
   animation: treadmill_next 1s linear infinite;
 }
-[data-component=slide-list] > div > div section .next:before {
+section[data-component=slide] .next:before {
   content: ">";
   display: block;
   position: absolute;
@@ -109,11 +128,11 @@ body {
   animation: treadmill_next 1s linear infinite;
   animation-delay: 0.5s;
 }
-[data-component=slide-list] > div > div section .previous {
+section[data-component=slide] .previous {
   right: auto;
   left: 0;
 }
-[data-component=slide-list] > div > div section .previous:after {
+section[data-component=slide] .previous:after {
   content: ">";
   display: block;
   position: absolute;
@@ -125,7 +144,7 @@ body {
   animation: treadmill_previous 1s linear infinite;
   animation-delay: 0.5s;
 }
-[data-component=slide-list] > div > div section .previous:before {
+section[data-component=slide] .previous:before {
   content: ">";
   display: block;
   position: absolute;
@@ -163,5 +182,111 @@ body {
   75% {
     opacity: 0.5;
     transform: translateX(6px) rotateY(180deg);
+  }
+}
+[data-component=sommaire] {
+  counter-reset: list-puces;
+  padding-top: calc(clamp(10px, 2vw, 20px) * 4);
+  color: black;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+[data-component=sommaire] > .card {
+  box-shadow: 2px 2px 50px 1px;
+  border-radius: 5px;
+  padding: 30px;
+  width: 50%;
+}
+[data-component=sommaire] > .card > ol {
+  list-style: none;
+  pointer-events: initial;
+}
+[data-component=sommaire] > .card > ol li {
+  counter-increment: list-puces;
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+[data-component=sommaire] > .card > ol li:before {
+  content: counter(list-puces, upper-roman);
+  margin-right: 5px;
+}
+[data-component=sommaire] > .card > ol li a {
+  color: black;
+  text-decoration: none;
+  overflow-x: hidden;
+  position: relative;
+}
+[data-component=sommaire] > .card > ol li a:after, [data-component=sommaire] > .card > ol li a:before {
+  content: "";
+  display: block;
+  width: 0%;
+  border-bottom: 2px solid black;
+  position: absolute;
+  bottom: 0;
+}
+[data-component=sommaire] > .card > ol li a:before {
+  left: 0%;
+}
+[data-component=sommaire] > .card > ol li a:after {
+  right: 0%;
+}
+[data-component=sommaire] > .card > ol li a.mouseover:before {
+  animation: underline_move_to_right_in 0.3s linear both;
+}
+[data-component=sommaire] > .card > ol li a.mouseover:after {
+  animation: underline_move_to_left_in 0.3s linear both;
+}
+[data-component=sommaire] > .card > ol li a.mouseout:before {
+  animation: underline_move_to_right_out 0.3s linear both;
+}
+[data-component=sommaire] > .card > ol li a.mouseout:after {
+  animation: underline_move_to_left_out 0.3s linear both;
+}
+
+@keyframes underline_move_to_right_in {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 25%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+@keyframes underline_move_to_right_out {
+  0% {
+    width: 50%;
+  }
+  50% {
+    width: 25%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+@keyframes underline_move_to_left_in {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 25%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+@keyframes underline_move_to_left_out {
+  0% {
+    width: 50%;
+  }
+  50% {
+    width: 25%;
+  }
+  100% {
+    width: 0%;
   }
 }/*# sourceMappingURL=app.css.map */
