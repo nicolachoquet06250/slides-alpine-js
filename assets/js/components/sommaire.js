@@ -41,16 +41,6 @@ const sommaire = () => ({
         const element = document.querySelector(`#${target.getAttribute('data-element')}`);
         const slideWidth = element.offsetWidth;
 
-        console.log((id * slideWidth - this.$el.parentElement.parentElement.parentElement.parentElement.parentElement.scrollLeft), id, slideWidth, this.$el.parentElement.parentElement.parentElement.parentElement.parentElement.scrollLeft)
-
-        // this.$el.parentElement.parentElement.parentElement.parentElement.parentElement.scrollLeft = (id * slideWidth - this.$el.parentElement.parentElement.parentElement.parentElement.parentElement.scrollLeft) + id * 15;
-
-        /*this.$el.parentElement.parentElement.parentElement.parentElement.parentElement.scrollTo({
-            top: 0,
-            left: (id * slideWidth - this.$el.parentElement.parentElement.parentElement.parentElement.parentElement.scrollLeft) + id * 15,
-            behavior: 'smooth'
-        });*/
-
         let scrollAmount = 0;
         const slideTimer = setInterval(() => {
             this.$el.parentElement.parentElement.parentElement.parentElement.parentElement.scrollLeft += 10;
