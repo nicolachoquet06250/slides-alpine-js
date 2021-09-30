@@ -1,8 +1,13 @@
+const ORANGE = 'orange';
+const NORSYS = 'norsys';
+
 const slide = () => ({
     componentName: 'slide',
     $el: null,
 
     isSimpleClick: false,
+    logo: ORANGE,
+    logoSize: '50px',
 
     get item() {
         return JSON.parse(this.$el.parentElement.getAttribute('data-item'));
@@ -10,6 +15,8 @@ const slide = () => ({
 
     get template() {
         return/*html*/ `
+        <img :src="item.logos[logo]" style="width: ${this.logoSize}; height: auto; pointer-events: none; position: absolute; right: 10px; top: 10px;">
+
         <template x-if="item.id !== 0">
             <a href="#" class="previous" @dblclick.prevent="firstSlide()" @click.prevent="previousSlide()"></a>
         </template>

@@ -289,4 +289,10 @@ section[data-component=slide] .previous:before {
   100% {
     width: 0%;
   }
+}
+[data-component=what-is-it] {
+  color: black;
+  padding-top: 100px;
+  padding-left: 50px;
+  font-weight: bold;
 }/*# sourceMappingURL=app.css.map */
