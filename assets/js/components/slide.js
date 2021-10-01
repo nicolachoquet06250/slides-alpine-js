@@ -1,12 +1,14 @@
 const ORANGE = 'orange';
 const NORSYS = 'norsys';
 
+const logo = [ORANGE, NORSYS].indexOf(localStorage.getItem('selected_logo')) !== -1 
+    ? localStorage.getItem('selected_logo') : ORANGE;
 const slide = () => ({
     componentName: 'slide',
     $el: null,
 
     isSimpleClick: false,
-    logo: ORANGE,
+    logo,
     logoSize: '50px',
 
     get item() {
