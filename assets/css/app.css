@@ -54,7 +54,7 @@ section[data-component=slide] {
 section[data-component=slide]:not(:nth-child(1)) {
   margin-left: 10px;
 }
-section[data-component=slide] > img {
+section[data-component=slide] img.background {
   margin-top: var(--mt, none);
   width: 100%;
   height: auto;
@@ -185,7 +185,6 @@ section[data-component=slide] .previous:before {
   }
 }
 [data-component=sommaire] {
-  counter-reset: list-puces;
   padding-top: calc(clamp(10px, 2vw, 20px) * 4);
   color: black;
   height: 100%;
@@ -195,7 +194,7 @@ section[data-component=slide] .previous:before {
   align-items: center;
 }
 [data-component=sommaire] > .card {
-  box-shadow: 2px 2px 50px 1px;
+  border: 1px solid #000000;
   border-radius: 5px;
   padding: 30px;
   width: 50%;
@@ -205,13 +204,18 @@ section[data-component=slide] .previous:before {
   pointer-events: initial;
 }
 [data-component=sommaire] > .card > ol li {
-  counter-increment: list-puces;
   font-size: 1.5rem;
   margin-top: 10px;
 }
 [data-component=sommaire] > .card > ol li:before {
-  content: counter(list-puces, upper-roman);
+  content: "";
   margin-right: 5px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 4px solid black;
+  border-radius: 15px;
+  margin-bottom: 1px;
 }
 [data-component=sommaire] > .card > ol li a {
   color: black;
@@ -295,4 +299,91 @@ section[data-component=slide] .previous:before {
   padding-top: 100px;
   padding-left: 50px;
   font-weight: bold;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+[data-component=what-is-it] > .identity-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 500px;
+  margin-right: 50px;
+}
+[data-component=what-is-it] > .identity-card header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 15px;
+  flex: 0.1;
+}
+[data-component=what-is-it] > .identity-card header span:not(:last-child) {
+  text-transform: uppercase;
+}
+[data-component=what-is-it] > .identity-card header:first-child {
+  font-size: 2rem;
+  padding-top: 10px;
+  padding-left: 15px;
+  text-transform: uppercase;
+  background-color: #2e3440;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: whitesmoke;
+}
+[data-component=what-is-it] > .identity-card header:nth-child(2) {
+  margin-top: 5px;
+  margin-right: 10px;
+  border-bottom: 5px solid white;
+  margin-left: 10px;
+  padding-left: 5px;
+}
+[data-component=what-is-it] > .identity-card header:nth-child(2) span:not(:last-child) {
+  text-transform: uppercase;
+}
+[data-component=what-is-it] > .identity-card main {
+  display: flex;
+  flex: 2;
+  padding-left: 10px;
+}
+[data-component=what-is-it] > .identity-card main > div:first-child {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2E3440;
+}
+[data-component=what-is-it] > .identity-card main > div:first-child > img {
+  width: 100%;
+}
+[data-component=what-is-it] > .identity-card main > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+}
+[data-component=what-is-it] > .identity-card main > div:nth-child(2) span {
+  height: 40px;
+}
+[data-component=what-is-it] > .identity-card footer {
+  display: flex;
+  flex: 0.5;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-top: 1px solid white;
+}
+[data-component=what-is-it] > .identity-card:before {
+  content: "";
+  position: absolute;
+  border: 10px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }/*# sourceMappingURL=app.css.map */

@@ -17,14 +17,14 @@ const slide = () => ({
 
     get template() {
         return/*html*/ `
-        <img :src="item.logos[logo]" style="width: ${this.logoSize}; height: auto; pointer-events: none; position: absolute; right: 10px; top: 10px;">
+        <img :src="item.logos[logo]" class="logo" style="width: ${this.logoSize}; height: auto; pointer-events: none; position: absolute; right: 10px; top: 10px;">
 
         <template x-if="item.id !== 0">
             <a href="#" class="previous" @dblclick.prevent="firstSlide()" @click.prevent="previousSlide()"></a>
         </template>
 
         <template x-if="item.image">
-            <img :src="item.image" />
+            <img :src="item.image" class="background" />
         </template>
 
         <div class="slide-body" x-html="document.querySelector(item.template).innerHTML"></div>
@@ -106,7 +106,7 @@ const slide = () => ({
     resizeSlide() {
         this.$el.parentElement.style.setProperty('--screen-width', window.innerWidth - 5 + 'px');
 
-        const backgroundImage = this.$el.querySelector('img');
+        const backgroundImage = this.$el.querySelector('img.background');
 
         if (backgroundImage) {
             if (window.innerWidth < 842) {

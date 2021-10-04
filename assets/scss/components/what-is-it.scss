@@ -3,4 +3,110 @@
     padding-top: 100px;
     padding-left: 50px;
     font-weight: bold;
+
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > .identity-card {
+        display: flex;
+        flex-direction: column;
+
+        & header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 15px;
+            flex: 0.1;
+
+            span:not(:last-child) {
+                text-transform: uppercase;
+            }
+
+            &:first-child {
+                font-size: 2rem;
+                padding-top: 10px;
+                padding-left: 15px;
+                text-transform: uppercase;
+
+                background-color: #2e3440; 
+                margin-top: 10px; 
+                margin-left: 10px; 
+                margin-right: 10px; 
+                color: whitesmoke;
+            }
+
+            &:nth-child(2) {
+                margin-top: 5px;
+                margin-right: 10px;
+                border-bottom: 5px solid white;
+                margin-left: 10px;
+                padding-left: 5px;
+
+                & span:not(:last-child) {
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        & main {
+            display: flex;
+            flex: 2;
+            padding-left: 10px;
+
+            & > div {
+                &:first-child {
+                    width: 200px; 
+                    display: flex; 
+                    flex-direction: column; 
+                    justify-content: center; 
+                    align-items: center;
+                    background-color: #2E3440;
+
+                    & > img {
+                        width: 100%;
+                    }
+                }
+
+                &:nth-child(2) {
+                    display: flex;
+                    flex-direction: column;
+                    padding-left: 5px;
+
+                    & span {
+                        height: 40px;
+                    }
+                }
+            }
+        }
+
+        & footer {
+            display: flex;
+            flex: 0.5;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            border-top: 1px solid white;
+        }
+
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        height: 500px;
+        margin-right: 50px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            border: 10px solid rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
 }
