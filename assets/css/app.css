@@ -418,11 +418,29 @@ section[data-component=slide] .previous:before {
 }
 [data-component=what-is-it] > .identity-card footer {
   display: flex;
+  flex-direction: column;
   flex: 0.5;
   margin-bottom: 10px;
   margin-left: 10px;
   margin-right: 10px;
   border-top: 1px solid white;
+}
+[data-component=what-is-it] > .identity-card footer > div {
+  font-size: 2rem;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: flex;
+  flex-direction: row;
+}
+[data-component=what-is-it] > .identity-card footer > div > span {
+  padding-left: 1.5px;
+  padding-right: 1.5px;
+}
+[data-component=what-is-it] > .identity-card footer > div:not(:last-child) {
+  padding-top: 20px;
+}
+[data-component=what-is-it] > .identity-card footer > div:last-child {
+  padding-bottom: 20px;
 }
 [data-component=what-is-it] > .identity-card:before {
   content: "";
