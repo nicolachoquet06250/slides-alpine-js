@@ -1,6 +1,6 @@
-[data-component=sommaire] {
-    // counter-reset: list-puces;
+@import '../animations/animations.scss';
 
+[data-component=sommaire] {
     padding-top: calc(clamp(10px, 2vw, 20px) * 4);
     color: black;
     height: 100%;
@@ -11,8 +11,6 @@
     align-items: center;
 
     & > .card {
-        // box-shadow: 2px 2px 50px 1px;
-
         border: 1px solid #000000;
         border-radius: 5px;
         padding: 30px;
@@ -23,10 +21,7 @@
             pointer-events: initial;
 
             & li {
-                // counter-increment: list-puces;
-
                 &:before {
-                    // content: counter(list-puces, upper-roman);
                     content: '';
                     margin-right: 5px;
                     display: inline-block;
@@ -43,103 +38,8 @@
                 & a {
                     color: black;
                     text-decoration: none;
-                    overflow-x: hidden;
-                    position: relative;
-
-                    &:after, &:before {
-                        content: '';
-                        display: block;
-                        width: 0%;
-                        border-bottom: 2px solid black;
-                        position: absolute;
-                        bottom: 0;
-                    }
-
-                    &:before {
-                        left: 0%;
-                    }
-
-                    &:after {
-                        right: 0%;
-                    }
-
-                    &.mouseover {
-                        &:before {
-                            animation: underline_move_to_right_in .3s linear both;
-                        }
-
-                        &:after {
-                            animation: underline_move_to_left_in .3s linear both;
-                        }
-                    }
-
-                    &.mouseout {
-                        &:before {
-                            animation: underline_move_to_right_out .3s linear both;
-                        }
-
-                        &:after {
-                            animation: underline_move_to_left_out .3s linear both;
-                        }
-                    }
                 }
             }
         }
-    }
-}
-
-@keyframes underline_move_to_right_in {
-    0% {
-        width: 0%;
-    }
-
-    50% {
-        width: 25%;
-    }
-
-    100% {
-        width: 50%;
-    }
-}
-
-@keyframes underline_move_to_right_out {
-    0% {
-        width: 50%;
-    }
-
-    50% {
-        width: 25%;
-    }
-
-    100% {
-        width: 0%;
-    }
-}
-
-@keyframes underline_move_to_left_in {
-    0% {
-        width: 0%;
-    }
-
-    50% {
-        width: 25%;
-    }
-
-    100% {
-        width: 50%;
-    }
-}
-
-@keyframes underline_move_to_left_out {
-    0% {
-        width: 50%;
-    }
-
-    50% {
-        width: 25%;
-    }
-
-    100% {
-        width: 0%;
     }
 }

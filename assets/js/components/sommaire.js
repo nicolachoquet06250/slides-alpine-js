@@ -2,8 +2,6 @@ const sommaire = () => ({
     componentName: 'sommaire',
     $el: null,
 
-    message: 'coucou je suis dans le sommaire',
-
     stepList: [
         {
             title: `Qu'est ce que c'est ?`,
@@ -23,20 +21,25 @@ const sommaire = () => ({
         }
     ],
 
-    handleMouseOver(e) {
-        const target = e.target;
-        target.classList.remove('mouseout');
-        target.classList.add('mouseover');
-    },
-
-    handleMouseOut(e) {
-        const target = e.target;
-        target.classList.remove('mouseover');
-        target.classList.add('mouseout');
+    get template() {
+        return/*html*/`
+            <div class="card">
+                <ol>
+                    <template x-for="step of stepList">
+                        <li>
+                            <a href="#" :data-text="step.title" :data-element="step.element"
+                               @click.prevent.stop="handleClick($event)">
+                                <span x-data="underline_animation()" x-init="init()"></span>
+                            </a>
+                        </li>
+                    </template>
+                </ol>
+            </div>
+        `
     },
 
     handleClick(e) {
-        const target = e.target;
+        const target = e.target.parentElement;
         const id = Number(target.getAttribute('data-element').replace('slide-', ''));
         const element = document.querySelector(`#${target.getAttribute('data-element')}`);
         const slideWidth = element.offsetWidth;
@@ -50,23 +53,6 @@ const sommaire = () => ({
                 clearInterval(slideTimer);
             }
         }, 1);
-    },
-
-    get template() {
-        return/*html*/`
-            <div class="card">
-                <ol>
-                    <template x-for="step of stepList">
-                        <li>
-                            <a href="#" x-text="step.title" :data-element="step.element"
-                               @mouseover="handleMouseOver($event)" 
-                               @mouseout="handleMouseOut($event)"
-                               @click.prevent.stop="handleClick($event)"></a>
-                        </li>
-                    </template>
-                </ol>
-            </div>
-        `
     },
 
     init() {

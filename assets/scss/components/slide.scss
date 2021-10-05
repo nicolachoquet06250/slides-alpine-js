@@ -1,3 +1,5 @@
+@import '../animations/animations.scss';
+
 section[data-component=slide] {
     flex-shrink: 0;
     height: 100%;
@@ -123,39 +125,5 @@ section[data-component=slide] {
             transform: translateX(0) rotateY(180deg);
             animation: treadmill_previous 1s linear infinite;
         }
-    }
-}
-
-@keyframes treadmill_next {
-    25% {
-        opacity: 0.5;
-        transform: translateX(2px);
-    }
-
-    50% {
-        opacity: 0;
-        transform: translateX(4px);
-    }
-
-    75% {
-        opacity: 0.5;
-        transform: translateX(6px);
-    }
-}
-
-@keyframes treadmill_previous {
-    25% {
-        opacity: 0.5;
-        transform: translateX(2px) rotateY(180deg);
-    }
-
-    50% {
-        opacity: 0;
-        transform: translateX(4px) rotateY(180deg);
-    }
-
-    75% {
-        opacity: 0.5;
-        transform: translateX(6px) rotateY(180deg);
     }
 }
