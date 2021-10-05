@@ -1,0 +1,89 @@
+@keyframes treadmill_next {
+    25% {
+        opacity: 0.5;
+        transform: translateX(2px);
+    }
+
+    50% {
+        opacity: 0;
+        transform: translateX(4px);
+    }
+
+    75% {
+        opacity: 0.5;
+        transform: translateX(6px);
+    }
+}
+
+@keyframes treadmill_previous {
+    25% {
+        opacity: 0.5;
+        transform: translateX(2px) rotateY(180deg);
+    }
+
+    50% {
+        opacity: 0;
+        transform: translateX(4px) rotateY(180deg);
+    }
+
+    75% {
+        opacity: 0.5;
+        transform: translateX(6px) rotateY(180deg);
+    }
+}
+
+@keyframes underline_move_to_right_in {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 25%;
+    }
+
+    100% {
+        width: 50%;
+    }
+}
+
+@keyframes underline_move_to_right_out {
+    0% {
+        width: 50%;
+    }
+
+    50% {
+        width: 25%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}
+
+@keyframes underline_move_to_left_in {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 25%;
+    }
+
+    100% {
+        width: 50%;
+    }
+}
+
+@keyframes underline_move_to_left_out {
+    0% {
+        width: 50%;
+    }
+
+    50% {
+        width: 25%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}
