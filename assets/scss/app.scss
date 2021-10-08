@@ -11,8 +11,12 @@ body {
     background: #f2f2f2;
 }
 
+@import './sementic-components/lists.scss';
+
+@import './components/tooltype.scss';
 @import './components/slide-list.scss';
 @import './components/slide.scss';
 @import './components/sommaire.scss';
+@import './components/identity-card.scss';
 @import './components/what-is-it.scss';
 @import './components/underline_animation.scss';

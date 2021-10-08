@@ -1,0 +1,38 @@
+@use "sass:list";
+
+$puce_size: 15px;
+$puce_border: 4px;
+$margin_left: 0px;
+
+ol.list,
+ul.list {
+    list-style: none;
+    pointer-events: initial;
+
+    & li {
+        &:before {
+            content: '';
+            margin-right: 5px;
+            display: inline-block;
+            width: $puce_size;
+            height: $puce_size;
+            border: $puce_border solid black;
+            border-radius: $puce_size;
+            margin-bottom: 1px;
+        }
+
+        font-size: 1.5rem;
+        margin-top: 10px;
+
+        & a {
+            color: black;
+            text-decoration: none;
+        }
+
+        & > ul.sub-list,
+        & > ol.sub-list {
+            $margin_left: $margin_left + $puce_size + ($puce_border * 2);
+            margin-left: $margin_left;
+        }
+    }
+}

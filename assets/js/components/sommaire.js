@@ -2,32 +2,15 @@ const sommaire = () => ({
     componentName: 'sommaire',
     $el: null,
 
-    stepList: [
-        {
-            title: `Qu'est ce que c'est ?`,
-            element: 'slide-1'
-        },
-        {
-            title: `La création`,
-            element: 'slide-2'
-        },
-        {
-            title: `La syntaxe`,
-            element: 'slide-3'
-        },
-        {
-            title: `Conclusion`,
-            element: 'slide-4'
-        }
-    ],
+    stepList: items,
 
     get template() {
         return/*html*/`
             <div class="card">
-                <ol>
+                <ol class="list">
                     <template x-for="step of stepList">
                         <li>
-                            <a href="#" :data-text="step.title" :data-element="step.element"
+                            <a href="#" :data-text="step.text" :data-element="step.element"
                                @click.prevent.stop="handleClick($event)">
                                 <span x-data="underline_animation()" x-init="init()"></span>
                             </a>

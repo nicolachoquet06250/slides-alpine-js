@@ -1,34 +1,6 @@
 const INIT = 1;
 const REMOVE = 2;
 
-const items = [
-    {
-        text: `Sommaire`,
-        // image: 'https://images.unsplash.com/photo-1577495508326-19a1b3cf65b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80',
-        template: '#item-1'
-    },
-    {
-        text: `Qu'est ce que c'est ?`,
-        // image: 'https://images.unsplash.com/photo-1609766857326-18a204c2cf31?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-        template: '#item-2'
-    },
-    {
-        text: 'La création',
-        // image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1054&q=80',
-        template: '#item-3'
-    },
-    {
-        text: 'La syntaxe',
-        // image: 'https://images.unsplash.com/photo-1566908829550-e6551b00979b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80',
-        template: '#item-4'
-    },
-    {
-        text: 'Conclusion',
-        // image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80',
-        template: '#item-5'
-    },
-];
-
 const logos = {
     orange: 'https://startup.orange.com/wp-content/uploads/sites/7/2019/03/small_logo_rgb.png',
     norsys: 'https://avatars.githubusercontent.com/u/2487851?s=200&v=4'

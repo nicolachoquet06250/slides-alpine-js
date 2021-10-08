@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Slides de présentation Alpine.js</title>
+    <script src="assets/js/slides.js" defer="defer"></script>
+    <script src="assets/js/components/tooltype.js" defer="defer"></script>
     <script src="assets/js/animations/underline_animation.js" defer="defer"></script>
     <script src="assets/js/components/sommaire.js" defer="defer"></script>
     <script src="assets/js/components/what-is-it.js" defer="defer"></script>
+    <script src="assets/js/components/identity-card.js" defer="defer"></script>
     <script src="assets/js/components/slide.js" defer="defer"></script>
     <script src="assets/js/components/slideshow.js" defer="defer"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer="defer"></script>
@@ -30,8 +33,6 @@
         <h2 x-text="item.text.toUpperCase()"></h2>
 
         <div x-data="sommaire()" x-init="init()"></div>
-
-        <!--<a href="#">Explore it</a>-->
     </template>
 
     <template id="item-2">
@@ -39,9 +40,7 @@
 
         <h2 x-text="item.text.toUpperCase()"></h2>
 
-        <div x-data="whatIsIt()" x-init="init()"></div>
-
-        <!--<a href="#">Explore it</a>-->
+        <div x-data="identityCard()" x-init="init()"></div>
     </template>
 
     <template id="item-3">
@@ -49,23 +48,25 @@
 
         <h2 x-text="item.text.toUpperCase()"></h2>
 
-        <!--<a href="#">Explore it</a>-->
+        <div x-data="whatIsIt()" x-init="init()"></div>
     </template>
 
     <template id="item-4">
         <div class="overlay"></div>
 
         <h2 x-text="item.text.toUpperCase()"></h2>
-
-        <!--<a href="#">Explore it</a>-->
     </template>
 
     <template id="item-5">
         <div class="overlay"></div>
 
         <h2 x-text="item.text.toUpperCase()"></h2>
+    </template>
 
-        <!--<a href="#">Explore it</a>-->
+    <template id="item-6">
+        <div class="overlay"></div>
+
+        <h2 x-text="item.text.toUpperCase()"></h2>
     </template>
 </body>
 </html>
