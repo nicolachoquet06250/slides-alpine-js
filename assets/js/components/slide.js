@@ -27,7 +27,7 @@ const slide = () => ({
             <img :src="item.image" class="background" />
         </template>
 
-        <div class="slide-body" x-html="document.querySelector(item.template).innerHTML"></div>
+        <div class="slide-body" x-html="item.template"></div>
 
         <template x-if="item.id < item.nbItems - 1">
             <a href="#" class="next" @dblclick.prevent="lastSlide()" @click.prevent="nextSlide()"></a>

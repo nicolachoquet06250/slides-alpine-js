@@ -2,7 +2,7 @@ const sommaire = () => ({
     componentName: 'sommaire',
     $el: null,
 
-    stepList: items,
+    stepList: items.reduce((r, c) => c.text !== 'Sommaire' ? [...r, c] : r, []),
 
     get template() {
         return/*html*/`

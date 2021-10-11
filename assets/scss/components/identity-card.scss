@@ -77,18 +77,19 @@
                     }
                 }
 
+                & span {
+                    height: 40px;
+
+                    & > strong a {
+                        color: black;
+                        text-decoration: none;
+                    }
+                }
+
                 &:nth-child(2) {
                     display: flex;
                     flex-direction: column;
                     padding-left: 5px;
-
-                    & span {
-                        height: 40px;
-
-                        & > strong a {
-                            color: black;
-                        }
-                    }
                 }
             }
         }

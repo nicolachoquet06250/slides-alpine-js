@@ -12,88 +12,125 @@
 const whatIsIt = (type='avantages') => ({
     componentName: 'what-is-it',
     $el: null,
+    type,
 
-    avantages: [
-        { text: `Plus léger qu'un framework classique` },
-        { text: `Travail directement avec le DOM` },
-        { text: `Pas d'outillage superflux obligatoir comme babel ou webpack` },
-        { text: 'Principalement utile pour du rendu côté server' },
-        { text: `Emprinte sa syntaxe à Vue.js en remplaçant les "v-" par des "x-" dans ses directives` },
+    features: [
+        { 
+            text: `Micro-Framework Léger`,
+            tooltypes: [
+                {
+                    text: '<strong>6,4kb</strong> GZippé & minifié',
+                    sens: 'top'
+                }
+            ]
+        },
+        { text: `Pas de virtual-DOM` },
+        { text:/*html*/`Pas d'outillage superflux obligatoir comme <strong>babel</strong> ou <strong>webpack</strong>` },
+        { text: `Principalement utile pour du rendu côté server` },
+        { text: `Non adapté pour des SPA avec routage` },
+        { text: `Emprunte sa syntaxe à Vue.js en remplaçant les "v-" par des "x-" dans ses directives` },
         {
             text: `Scope côté HTML`, 
             list: [
                 {
-                    text: `x-data="{prop1: 'value', method1() {...}}"`,
+                    text:/*html*/`<strong>x-data="{prop1: 'value', method1() {...}}"</strong>`,
                     tooltypes: [
                         {
-                            text: '<dd>Permet de créer un scope dans un bloque de code HTML</dd>',
+                            text:/*html*/`<dd>Permet de créer un scope dans un bloque de code HTML</dd>`,
                             sens: 'bottom'
                         }
                     ]
                 },
                 {
-                    text: `x-init="init()"`,
+                    text:/*html*/`<strong>x-init="init()"</strong>`,
                     tooltypes: [
                         {
-                            text: `<dd>Lance une fonction d'initialisation qui doit être présente<br>dans le scope précédement créé avec x-data</dd>`,
+                            text:/*html*/`<dd>Lance une fonction d'initialisation qui doit être présente<br>dans le scope précédement créé avec x-data</dd>`,
                             sens: 'bottom'
                         }
                     ]
                 },
                 {
-                    text: `x-bind:attribute='value'`,
+                    text:/*html*/`<strong>x-bind:attribute='value'</strong>`,
                     tooltypes: [
                         {
-                            text: '<strong>alias :attribute=&quot;value&quot;</strong>',
+                            text:/*html*/`<strong>alias :attribute=&quot;value&quot;</strong>`,
                             sens: 'top'
                         },
                         {
-                            text: '<dd>Permet de binder une variable du scope à un attribut HTML</dd>',
+                            text:/*html*/`<dd>Permet de binder une variable du scope à un attribut HTML</dd>`,
                             sens: 'bottom'
                         }
                     ]
                 },
-                // { text: '...etc' }
+                {
+                    text:/*html*/`<strong>x-if='true|false'</strong>`,
+                    tooltypes: [
+                        {
+                            text:/*html*/`<dd>Rajoute l'élément dans le DOM si la condition est remplie<br>et le supprime si celle-ci n'est pas replie</dd>`,
+                            sens: 'bottom'
+                        }
+                    ]
+                },
+                {
+                    text:/*html*/`<strong>x-else</strong>`,
+                    tooltypes: [
+                        {
+                            text:/*html*/`<dd>Fait la même chose que le x-if mais pour le négatif de la condition</dd>`,
+                            sens: 'bottom'
+                        }
+                    ]
+                },
+                {
+                    text:/*html*/`<strong>x-show='true|false'</strong>`,
+                    tooltypes: [
+                        {
+                            text:/*html*/`<dd>Rajoute un <strong>display: none</strong> sur l'élément si la condition n'est pas remplie<br>et le supprime si celle-ci est replie</dd>`,
+                            sens: 'bottom'
+                        }
+                    ]
+                },
+                { text: '...etc' }
             ]
         },
         {
             text: [
                 'Possède des "modifieurs" cumulables sur les évenements',
-                'Exemples: '
+                `<span style="margin-left: 25px;">Exemples: </span>`
             ],
             list: [
                 {
-                    text: 'x-on:click.away',
+                    text:/*html*/`<strong>x-on:click.away</strong>`,
                     tooltypes: [
                         {
-                            text: '<strong>alias &quot;@click.away&quot;</strong>', 
+                            text:/*html*/`<strong>alias &quot;@click.away&quot;</strong>`, 
                             sens: 'top'
                         }, {
-                            text: `<dd>Défini un évenement click qui se déclanche lorse qu'on<br>click en dehors de l'élément</dd>`, 
+                            text:/*html*/`<dd>Défini un évenement click qui se déclanche lorse qu'on<br>click en dehors de l'élément</dd>`, 
                             sens: 'bottom'
                         }
                     ]
                 },
                 {
-                    text: 'x-on:click.prevent',
+                    text:/*html*/`<strong>x-on:click.prevent</strong>`,
                     tooltypes: [
                         {
-                            text: '<strong>alias &quot;@click.prevent&quot;</strong>', 
+                            text:/*html*/`<strong>alias &quot;@click.prevent&quot;</strong>`, 
                             sens: 'top'
                         }, {
-                            text: `<dd>Défini un évenement click qui lancera un event.preventDefault()<br>au début de l'évenement</dd>`, 
+                            text:/*html*/`<dd>Défini un évenement click qui lancera un event.preventDefault()<br>au début de l'évenement</dd>`, 
                             sens: 'bottom'
                         }
                     ]
                 },
                 {
-                    text: 'x-on:click.stop',
+                    text:/*html*/`<strong>x-on:click.stop</strong>`,
                     tooltypes: [
                         {
-                            text: '<strong>alias &quot;@click.stop&quot;</strong>', 
+                            text:/*html*/`<strong>alias &quot;@click.stop&quot;</strong>`, 
                             sens: 'top'
                         }, {
-                            text: `<dd>Défini un évenement click qui lancera un event.stopPropagation()<br>au début de l'évenement</dd>`, 
+                            text:/*html*/`<dd>Défini un évenement click qui lancera un event.stopPropagation()<br>au début de l'évenement</dd>`, 
                             sens: 'bottom'
                         }
                     ]
@@ -101,60 +138,35 @@ const whatIsIt = (type='avantages') => ({
             ]
         }
     ],
-    inconvenients: [],
 
-    get template_avantages() {
+    get template() {
         return/*html*/`
             <div>
                 <ul class="list">
-                    <template x-for="avantage of Array.from(Array(5).keys()).map(i => avantages[i])">
-                        <li x-text="avantage.text"></li>
+                    <template x-for="feature of features">   
+                        <li :data-text="feature.text" 
+                            :data-tooltypes="JSON.stringify(feature.tooltypes ?? [])">
+                            <span x-data="tooltype()" x-init="init()"></span>
+
+                            <ul class="list sub-list" x-show="feature.list">
+                                <template x-for="item of list(feature.list)">
+                                    <li :data-tooltypes="JSON.stringify(item.tooltypes)" 
+                                        :data-text="item.text">
+                                        <dt x-data="tooltype()" x-init="init()"></dt>
+                                    </li>
+                                </template>
+                            </ul>
+                        </li>
                     </template>
-
-                    <li>
-                        <span x-text="avantages[5].text"></span>
-
-                        <ul class="list sub-list">
-                            <template x-for="item of avantages[5].list">
-                                <li :data-tooltypes="JSON.stringify(item.tooltypes)" :data-text="item.text">
-                                    <dt x-data="tooltype()" x-init="init()"></dt>
-                                </li>
-                            </template>
-
-                            <li> ...etc </li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <span x-text="avantages[6].text[0]"></span>
-                        <br>
-                        <span style="margin-left: 25px;" x-text="avantages[6].text[1]"></span>
-
-                        <ul class="list sub-list">
-                            <template x-for="item of avantages[6].list">
-                                <li :data-tooltypes="JSON.stringify(item.tooltypes)" :data-text="item.text">
-                                    <dt x-data="tooltype()" x-init="init()"></dt>
-                                </li>
-                            </template>
-
-                            <li> ...etc </li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
         `;
     },
 
-    get template_inconvenients() {
-        return/*html*/`
-            <div>
-
-            </div>
-        `;
-    },
+    list: l => Array.isArray(l) ? l : [],
 
     init() {
         this.$el.setAttribute('data-component', this.componentName);
-        this.$el.setAttribute('x-html', `template_avantages`);
+        this.$el.setAttribute('x-html', `template`);
     }
 });

@@ -15,6 +15,11 @@ const identityCard = () => ({
         ].map(e => e.split('').map(_e => `<span>${_e}</span>`).join(''));
     },
 
+    github: 'https://github.com/alpinejs/alpine',
+    parent: {
+        name: 'Caleb Porzio',
+        github: 'https://github.com/calebporzio'
+    },
     identityNumber: '123456789123',
     logo: 'https://avatars.githubusercontent.com/u/59030169?s=280&v=4',
     name: 'Alpine.js'.toUpperCase(),
@@ -41,14 +46,25 @@ const identityCard = () => ({
                     </div>
                     
                     <div>
+                        <span> Père: 
+                            <strong>
+                                <a :href="parent.github" :data-text="parent.name" target="_blank">
+                                    <span x-data="underline_animation()" x-init="init()"></span>
+                                </a> 
+                            </strong>
+                        </span>
+
                         <span> Nom: <strong x-text="name"></strong> </span>
 
                         <span> Né le : <strong x-text="firstRealeseDate"></strong> </span>
 
                         <span> 
                             à : <strong> 
-                                <a href="https://github.com/alpinejs/alpine" target="_blank"
-                                   x-data="underline_animation()" x-init="init()">GITHUB</a> 
+                                <a :href="github" target="_blank">
+                                    <span x-data="underline_animation()" x-init="init()">
+                                        GITHUB
+                                    </span>
+                                </a> 
                             </strong> 
                         </span>
 
@@ -57,7 +73,8 @@ const identityCard = () => ({
                         </span>
 
                         <span style="display: flex; flex-direction: column;">
-                            Signature du titulaire : <img :src="base64Sign" style="width: 200px;" />
+                            Signature du titulaire : 
+                            <img :src="base64Sign" style="width: 200px;" />
                         </span>
                     </div>
                 </main>

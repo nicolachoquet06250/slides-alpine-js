@@ -1,0 +1,18 @@
+[data-component=syntaxe] {
+    & > .part {
+        padding-top: 20px;
+        padding-left: 100px; 
+        padding-right: 100px; 
+        pointer-events: all; 
+        color: black;
+
+        & h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+    }
+
+    & .part:first-child {
+        padding-top: 100px;
+    }
+}

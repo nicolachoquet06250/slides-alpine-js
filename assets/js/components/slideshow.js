@@ -109,6 +109,16 @@ const slideshow = () => ({
 
         this.events(INIT);
 
+        const ORANGE = 'orange';
+        const NORSYS = 'norsys';
+
+        const logo = [ORANGE, NORSYS].indexOf(localStorage.getItem('selected_logo')) !== -1 
+            ? localStorage.getItem('selected_logo') : ORANGE;
+
+        document.head.innerHTML +=/*html*/`
+            <link rel="icon" href="${logos[logo]}" />
+        `;
+
         return () => this.events(REMOVE);
     }
 });
