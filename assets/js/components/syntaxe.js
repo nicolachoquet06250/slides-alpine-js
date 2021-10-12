@@ -13,45 +13,59 @@ const syntaxe = (part = PART_1) => ({
     templates: {
         [PART_1]:/*html*/`
             <div class="part">
-                <h3>X-IF / X-SHOW</h3>
-                <pre><code class="language-html" data-template="if"></code></pre>
-                <div data-demo="if"></div>
+                <div>
+                    <h3>X-IF / X-SHOW</h3>
+                    <pre><code class="language-html" data-template="if"></code></pre>
+                    <div data-demo="if"></div>
+                </div>
 
-                <h3>X-MODEL</h3>
-                <pre><code class="language-html" data-template="model"></code></pre>
-                <div data-demo="model"></div>
+                <div>
+                    <h3>X-MODEL</h3>
+                    <pre><code class="language-html" data-template="model"></code></pre>
+                    <div data-demo="model"></div>
+                </div>
             </div>
         `,
         [PART_2]:/*html*/`
             <div class="part">
-                <h3>X-ON / @</h3>
-                <pre><code class="language-html" data-template="event"></code></pre>
-                <div data-demo="event"></div>
+                <div>
+                    <h3>X-ON / @</h3>
+                    <pre><code class="language-html" data-template="event"></code></pre>
+                    <div data-demo="event"></div>
+                </div>
             </div>
         `,
         [PART_3]:/*html*/`
             <div class="part">
-                <h3>X-BIND / :</h3>
-                <pre><code class="language-html" data-template="bind"></code></pre>
-                <div data-demo="bind"></div>
+                <div>
+                    <h3>X-BIND / :</h3>
+                    <pre><code class="language-html" data-template="bind"></code></pre>
+                    <div data-demo="bind"></div>
+                </div>
 
-                <h3>X-INIT</h3>
-                <pre><code class="language-html" data-template="init"></code></pre>
-                <div data-demo="init"></div>
+                <div>
+                    <h3>X-INIT</h3>
+                    <pre><code class="language-html" data-template="init"></code></pre>
+                    <div data-demo="init"></div>
+                </div>
             </div>
         `,
         [PART_4]:/*html*/`
             <div class="part">
-                <h3>X-SHOW.TRANSITION</h3>
-                <pre><code class="language-html" data-template="transition"></code></pre>
-                <div data-demo="transition"></div>
+                <div>
+                    <h3>X-SHOW.TRANSITION</h3>
+                    <pre><code class="language-html" data-template="transition"></code></pre>
+                    <div data-demo="transition"></div>
+                </div>
             </div>
         `,
         [PART_5]:/*html*/`
             <div class="part">
-                <h3>X-TEXT / X-HTML</h3>
-                <pre><code class="language-html" data-template="text_html"></code></pre>
-                <div data-demo="text_html"></div>
+                <div>
+                    <h3>X-TEXT / X-HTML</h3>
+                    <pre><code class="language-html" data-template="text_html"></code></pre>
+                    <div data-demo="text_html"></div>
+                </div>
             </div>
         `,
     },
@@ -97,7 +111,8 @@ const syntaxe = (part = PART_1) => ({
             
             event:() => alert(\`j'ai clické\`), 
             link: e => alert(\`J'ai clické sur \${e.target.getAttribute(\`href\`)}\`),
-            openModal() { this.modalOpened = true; }
+            openModal() { this.modalOpened = true; document.querySelector('[data-component=slide-list]').dispatchEvent(new Event('disable-slide')) },
+            closeModal() { this.modalOpened = false; document.querySelector('[data-component=slide-list]').dispatchEvent(new Event('enable-slide')) },
         }">
             <button @click="event()">
                 Clicker ( syntaxe raccourcie )
@@ -114,8 +129,9 @@ const syntaxe = (part = PART_1) => ({
             </a>
 
             <div class="modal-overlay" x-show.transition.opacity="modalOpened">
-                <div class="modal" @click.away="modalOpened = false">
+                <div class="modal" @click.away="closeModal()">
                     <h2>Je suis une modal</h2>
+
                     <p>
                         <span x-data="tooltype([
                             {

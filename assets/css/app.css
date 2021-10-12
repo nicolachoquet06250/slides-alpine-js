@@ -656,9 +656,6 @@ section[data-component=slide] .previous:before {
 [data-component=syntaxe] {
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 [data-component=syntaxe] > .part {
   padding-top: 20px;
@@ -666,6 +663,11 @@ section[data-component=slide] .previous:before {
   padding-right: 100px;
   pointer-events: all;
   color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }
 [data-component=syntaxe] > .part h3 {
   margin-top: 20px;
@@ -682,6 +684,7 @@ section[data-component=slide] .previous:before {
   justify-content: center;
   align-items: center;
   pointer-events: all;
+  z-index: 999;
 }
 [data-component=syntaxe] > .part .modal-overlay > .modal {
   min-width: 50%;

@@ -31,7 +31,7 @@ const items = [
         `
     },
     {
-        text: 'La syntaxe',
+        text: 'La syntaxe - partie 1',
         template:/*html*/`
             <div class="overlay"></div>
 

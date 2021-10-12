@@ -1,9 +1,6 @@
 [data-component=syntaxe] {
     height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
     & > .part {
         padding-top: 20px;
@@ -11,6 +8,12 @@
         padding-right: 100px; 
         pointer-events: all; 
         color: black;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
 
         & h3 {
             margin-top: 20px;
@@ -28,6 +31,7 @@
             justify-content: center;
             align-items: center;
             pointer-events: all;
+            z-index: 999;
 
             & > .modal {
                 min-width: 50%;

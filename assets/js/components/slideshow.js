@@ -18,8 +18,11 @@ const slideshow = () => ({
     alreadyLeftScrolled: true,
     velocity: 0,
     rafID: null,
+    isSlideDisabled: false,
 
     handleMouseDown(e) {
+        if (this.isSlideDisabled) return;
+
         this.holding = true;
         this.firstClickX = e.pageX - this.$el.offsetLeft;
         this.alreadyLeftScrolled = this.$el.scrollLeft;
@@ -27,6 +30,8 @@ const slideshow = () => ({
     },
 
     handleMouseMove(e) {
+        if (this.isSlideDisabled) return;
+
         if (!this.holding) return;
 
         const x = e.pageX - this.$el.offsetLeft;
@@ -38,15 +43,21 @@ const slideshow = () => ({
     },
 
     handleMouseUp() {
+        if (this.isSlideDisabled) return;
+
         this.holding = false;
         this.startTransition()
     },
 
     handleMouseLeave() {
+        if (this.isSlideDisabled) return;
+
         this.holding = false;
     },
 
     handleToucheStart(e) {
+        if (this.isSlideDisabled) return;
+
         this.holding = true;
         // pageX => la largeur entre mon click et le DOCUMENT
         this.firstClickX = e.targetTouches[0].pageX - this.$el.offsetLeft;
@@ -55,11 +66,15 @@ const slideshow = () => ({
     },
 
     handleToucheEnd() {
+        if (this.isSlideDisabled) return;
+
         this.holding = false;
         this.startTransition()
     },
 
     handleToucheMove(e) {
+        if (this.isSlideDisabled) return;
+
         if(!this.holding) return;
 
         const x = e.targetTouches[0].pageX - this.$el.offsetLeft;
@@ -71,15 +86,21 @@ const slideshow = () => ({
     },
 
     startTransition() {
+        if (this.isSlideDisabled) return;
+
         this.stopTransition();
         this.rafID = requestAnimationFrame(this.decreasingTransition.bind(this));
     },
 
     stopTransition() {
+        if (this.isSlideDisabled) return;
+
         cancelAnimationFrame(this.rafID)
     },
 
     decreasingTransition() {
+        if (this.isSlideDisabled) return;
+
         this.$el.scrollLeft += this.velocity;
         this.velocity *= 0.95;
 
@@ -87,6 +108,14 @@ const slideshow = () => ({
             this.rafID = requestAnimationFrame(this.decreasingTransition.bind(this))
             // console.log(this.velocity);
         }
+    },
+
+    disableSlides() {
+        this.isSlideDisabled = true;
+    },
+
+    enableSlides() {
+        this.isSlideDisabled = false;
     },
 
     /**
@@ -100,9 +129,12 @@ const slideshow = () => ({
         this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('touchstart', this.handleToucheStart.bind(this));
         this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('touchend', this.handleToucheEnd.bind(this));
         this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('touchmove', this.handleToucheMove.bind(this));
+        
+        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('disable-slide', this.disableSlides.bind(this));
+        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('enable-slide', this.enableSlides.bind(this));
     },
 
-    init() {
+    init() {;
         this.$el.setAttribute('data-component', this.componentName);
 
         this.items = this.items.map((e, i) => ({...e, id: i}))
