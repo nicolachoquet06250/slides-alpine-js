@@ -84,7 +84,10 @@ const identityCard = () => ({
                         <div x-html="line"></div>
                     </template>
                 </footer>
+                
+                <div></div>
             </div>
+
         `;
     },
 

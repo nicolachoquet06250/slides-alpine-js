@@ -520,6 +520,33 @@ section[data-component=slide] .previous:before {
 [data-component=identity-card] > .identity-card footer > div:last-child {
   padding-bottom: 20px;
 }
+[data-component=identity-card] > .identity-card footer + div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  overflow: hidden;
+}
+[data-component=identity-card] > .identity-card footer + div:before, [data-component=identity-card] > .identity-card footer + div:after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  bottom: -100%;
+  display: block;
+  width: 4px;
+  transform: rotate(45deg);
+  background: rgba(255, 255, 255, 0.4);
+}
+[data-component=identity-card] > .identity-card footer + div:before {
+  right: 40%;
+}
+[data-component=identity-card] > .identity-card footer + div:after {
+  right: 38%;
+  width: 6px;
+}
 [data-component=identity-card] > .identity-card:before {
   content: "";
   position: absolute;
