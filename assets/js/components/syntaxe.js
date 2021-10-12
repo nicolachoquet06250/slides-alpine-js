@@ -236,7 +236,11 @@ const syntaxe = (part = PART_1) => ({
 
         setTimeout(() => {
             Array.from(this.$el.querySelectorAll('pre code')).map(e => {
-                e.innerHTML = hljs.highlightAuto(this[e.getAttribute('data-template') + '_template']).value;
+                e.innerHTML = hljs.highlightAuto((() => {
+                    const tpl = this[e.getAttribute('data-template') + '_template'].split('\n');
+                    tpl.shift();
+                    return tpl.join('\n');
+                })()).value;
                 if (e.innerHTML.split('\n').length > 41) {
                     let cmp = 0;
                     e.innerHTML = [...e.innerHTML.split('\n').reduce((r, c) => {
@@ -252,6 +256,7 @@ const syntaxe = (part = PART_1) => ({
                 }
                 hljs.highlightElement(e);
                 document.querySelector(`[data-demo="${e.getAttribute('data-template')}"]`).innerHTML = this[e.getAttribute('data-template') + '_template'];
+                hljs.initLineNumbersOnLoad();
             });
         }, 100)
     }
