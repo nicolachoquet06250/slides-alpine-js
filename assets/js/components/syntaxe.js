@@ -2,6 +2,7 @@ const PART_1 = 0;
 const PART_2 = 1;
 const PART_3 = 2;
 const PART_4 = 4;
+const PART_5 = 5;
 
 const syntaxe = (part = PART_1) => ({
     componentName: 'syntaxe',
@@ -26,30 +27,33 @@ const syntaxe = (part = PART_1) => ({
                 <h3>X-ON / @</h3>
                 <pre><code class="language-html" data-template="event"></code></pre>
                 <div data-demo="event"></div>
-
-                <h3>X-BIND / :</h3>
-                <pre><code class="language-html" data-template="bind"></code></pre>
-                <div data-demo="bind"></div>
             </div>
         `,
         [PART_3]:/*html*/`
             <div class="part">
+                <h3>X-BIND / :</h3>
+                <pre><code class="language-html" data-template="bind"></code></pre>
+                <div data-demo="bind"></div>
+
                 <h3>X-INIT</h3>
                 <pre><code class="language-html" data-template="init"></code></pre>
                 <div data-demo="init"></div>
-
+            </div>
+        `,
+        [PART_4]:/*html*/`
+            <div class="part">
                 <h3>X-SHOW.TRANSITION</h3>
                 <pre><code class="language-html" data-template="transition"></code></pre>
                 <div data-demo="transition"></div>
             </div>
         `,
-        [PART_4]:/*html*/`
+        [PART_5]:/*html*/`
             <div class="part">
                 <h3>X-TEXT / X-HTML</h3>
                 <pre><code class="language-html" data-template="text_html"></code></pre>
                 <div data-demo="text_html"></div>
             </div>
-        `
+        `,
     },
 
     model_template:/*html*/`
@@ -89,33 +93,51 @@ const syntaxe = (part = PART_1) => ({
 
     event_template:/*html*/`
         <div x-data="{
-            event() {
-                alert(\`j'ai clické\`)
-            }, link(e) {
-                alert(\`J'ai clické sur \${e.target.getAttribute(\`href\`)}\`)
-            }
+            modalOpened: false,
+            
+            event:() => alert(\`j'ai clické\`), 
+            link: e => alert(\`J'ai clické sur \${e.target.getAttribute(\`href\`)}\`),
+            openModal() { this.modalOpened = true; }
         }">
             <button @click="event()">
-                Clicker
+                Clicker ( syntaxe raccourcie )
             </button>
 
             <button x-on:click="event()">
-                Clicker
+                Clicker ( syntaxe longue )
             </button>
 
+            <button @click="openModal()">Ouvrir la modal</button>
+
             <a href="https://orange.fr" @click.prevent="link($event)">
-                Clicker ici
+                Avec le modifieur "prevent"
             </a>
+
+            <div class="modal-overlay" x-show.transition.opacity="modalOpened">
+                <div class="modal" @click.away="modalOpened = false">
+                    <h2>Je suis une modal</h2>
+                    <p>
+                        <span x-data="tooltype([
+                            {
+                                text: \`avec le modifieur ''away''\`,
+                                sens: 'top'
+                            }
+                        ])" x-init="init()">clicker en dehors de moi</span>
+                    </p>
+                </div>
+            </div>
         </div>
     `,
 
     bind_template:/*html*/`
+        <style> .red button { color: red; } </style>
+
         <div x-data="{
             binded_prop: true,
             handler(raccourcie = true) {
                 alert(\`J'ai clické sur le bouton avec la syntaxe \${raccourcie ? \`raccourcie\` : \`non raccourcie\`}\`)
             }
-        }">
+        }" :class="{red: !binded_prop}">
             <input type="checkbox" x-model="binded_prop" />
 
             <button :disabled="binded_prop" @click="handler()">

@@ -653,6 +653,13 @@ section[data-component=slide] .previous:before {
   animation: underline_move_to_left_out 0.3s linear both;
 }
 
+[data-component=syntaxe] {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 [data-component=syntaxe] > .part {
   padding-top: 20px;
   padding-left: 100px;
@@ -663,6 +670,28 @@ section[data-component=slide] .previous:before {
 [data-component=syntaxe] > .part h3 {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+[data-component=syntaxe] > .part .modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: all;
+}
+[data-component=syntaxe] > .part .modal-overlay > .modal {
+  min-width: 50%;
+  min-height: 150px;
+  height: auto;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 [data-component=syntaxe] .part:first-child {
   padding-top: 100px;
