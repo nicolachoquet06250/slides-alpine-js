@@ -38,12 +38,7 @@ const tooltype = options => ({
             }
         }
 
-        this.$el.addEventListener('mouseover', this.mouseOverHandler.bind(this));
-        this.$el.addEventListener('mouseout', this.mouseOutHandler.bind(this));
-
-        return () => {
-            this.$el.removeEventListener('mouseover', this.mouseOverHandler.bind(this));
-            this.$el.removeEventListener('mouseout', this.mouseOutHandler.bind(this));
-        }
+        this.$el.setAttribute('x-on:mouseover', 'mouseOverHandler($event)');
+        this.$el.setAttribute('x-on:mouseout', 'mouseOutHandler($event)');
     }
 });

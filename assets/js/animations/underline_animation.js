@@ -16,9 +16,9 @@ const underline_animation = () => ({
 
     init() {
         this.$el.setAttribute('data-component', this.componentName);
-        this.$el.addEventListener('mouseover', this.handleMouseOver.bind(this));
-        this.$el.addEventListener('mouseout', this.handleMouseOut.bind(this));
-
+        this.$el.setAttribute('x-on:mouseover', 'handleMouseOver($event)');
+        this.$el.setAttribute('x-on:mouseout', 'handleMouseOut($event)');
+        
         if (this.$el.parentElement.getAttribute('data-text')) {
             this.$el.innerText = this.$el.parentElement.getAttribute('data-text');
         }

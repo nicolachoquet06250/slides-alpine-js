@@ -86,6 +86,8 @@ const items = [
             <div class="overlay"></div>
 
             <h2 x-text="item.text.toUpperCase()"></h2>
+
+            <div x-data="conclude()" x-init="init()"></div>
         `
     },
-].map((e, i) => ({...e, element: `slide-${i}`}));
+].map((e, i) => ({...e, element: `slide-${i}`, id: i}));

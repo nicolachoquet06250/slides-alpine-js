@@ -1,6 +1,3 @@
-const INIT = 1;
-const REMOVE = 2;
-
 const logos = {
     orange: 'https://startup.orange.com/wp-content/uploads/sites/7/2019/03/small_logo_rgb.png',
     norsys: 'https://avatars.githubusercontent.com/u/2487851?s=200&v=4'
@@ -118,20 +115,19 @@ const slideshow = () => ({
         this.isSlideDisabled = false;
     },
 
-    /**
-     * @param {INIT|REMOVE} type 
-     */
-    events(type) {
-        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('mousedown', this.handleMouseDown.bind(this));
-        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('mouseup', this.handleMouseUp.bind(this));
-        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('mousemove', this.handleMouseMove.bind(this));
-        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('mouseleave', this.handleMouseLeave.bind(this));
-        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('touchstart', this.handleToucheStart.bind(this));
-        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('touchend', this.handleToucheEnd.bind(this));
-        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('touchmove', this.handleToucheMove.bind(this));
-        
-        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('disable-slide', this.disableSlides.bind(this));
-        this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('enable-slide', this.enableSlides.bind(this));
+    events() {
+        this.$el.setAttribute('x-on:slide-next', 'slideNext($event)');
+        this.$el.setAttribute('x-on:slide-previous', 'slidePrevious($event)');
+        this.$el.setAttribute('x-on:end-slide', 'endSlide($event)');
+        this.$el.setAttribute('x-on:disable-slide', 'disableSlides($event)');
+        this.$el.setAttribute('x-on:enable-slide', 'enableSlides($event)');
+        this.$el.setAttribute('x-on:mousedown', 'handleMouseDown($event)');
+        this.$el.setAttribute('x-on:mouseup', 'handleMouseUp($event)');
+        this.$el.setAttribute('x-on:mousemove', 'handleMouseMove($event)');
+        this.$el.setAttribute('x-on:mouseleave', 'handleMouseLeave($event)');
+        this.$el.setAttribute('x-on:touchstart', 'handleToucheStart($event)');
+        this.$el.setAttribute('x-on:touchend', 'handleToucheEnd($event)');
+        this.$el.setAttribute('x-on:touchmove', 'handleToucheMove($event)');
     },
 
     slideNext({ detail: { id, nextId } }) {
@@ -156,15 +152,9 @@ const slideshow = () => ({
     },
 
     init() {
-        this.$el.addEventListener('slide-next', this.slideNext.bind(this));
-        this.$el.addEventListener('slide-previous', this.slidePrevious.bind(this));
-        this.$el.addEventListener('end-slide', this.endSlide.bind(this));
-        
         this.$el.setAttribute('data-component', this.componentName);
 
-        this.items = this.items.map((e, i) => ({...e, id: i}))
-
-        this.events(INIT);
+        this.events();
 
         const ORANGE = 'orange';
         const NORSYS = 'norsys';
@@ -175,7 +165,5 @@ const slideshow = () => ({
         document.head.innerHTML +=/*html*/`
             <link rel="icon" href="${logos[logo]}" />
         `;
-
-        return () => this.events(REMOVE);
     }
 });
