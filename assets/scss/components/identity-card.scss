@@ -1,3 +1,31 @@
+/*[data-child-component=identity-card] {
+    & h2 {
+        transform: translateX(-15px);
+        opacity: 0;
+        transition: transform 2s linear, opacity 2s linear;
+    }
+}
+
+.is-current [data-child-component=identity-card] {
+    & h2 {
+        transform: translateX(-15px);
+        opacity: 0;
+        transition: transform 2s linear, opacity 2s linear;
+    }
+}
+
+.is-next,
+.is-previous,
+.current {
+    & [data-child-component=identity-card] {
+        & h2 {
+            transform: translateX(0px);
+            opacity: 1;
+            transition: transform 2s linear, opacity 2s linear;
+        }
+    }
+}*/
+
 [data-component=identity-card] {
     color: black;
     padding-top: 100px;

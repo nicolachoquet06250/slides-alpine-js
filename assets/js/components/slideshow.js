@@ -134,7 +134,32 @@ const slideshow = () => ({
         this.$el[`${type === INIT ? 'add' : 'remove'}EventListener`]('enable-slide', this.enableSlides.bind(this));
     },
 
-    init() {;
+    slideNext({ detail: { id, nextId } }) {
+        this.$el.querySelector(`#slide-${id}`).classList.add('is-current');
+        this.$el.querySelector(`#slide-${nextId}`).classList.add('is-next');
+        this.$el.querySelector('.current')?.classList.remove('current');
+    },
+
+    slidePrevious({ detail: { id, previousId } }) {
+        this.$el.querySelector(`#slide-${id}`).classList.add('is-current');
+        this.$el.querySelector(`#slide-${previousId}`).classList.add('is-previous');
+        this.$el.querySelector('.current')?.classList.remove('current');
+    },
+
+    endSlide() {
+        this.$el.querySelector('.is-next')?.classList.add('current');
+        this.$el.querySelector('.is-previous')?.classList.add('current');
+
+        this.$el.querySelector('.is-current')?.classList.remove('is-current');
+        this.$el.querySelector('.is-next')?.classList.remove('is-next');
+        this.$el.querySelector('.is-previous')?.classList.remove('is-previous');
+    },
+
+    init() {
+        this.$el.addEventListener('slide-next', this.slideNext.bind(this));
+        this.$el.addEventListener('slide-previous', this.slidePrevious.bind(this));
+        this.$el.addEventListener('end-slide', this.endSlide.bind(this));
+        
         this.$el.setAttribute('data-component', this.componentName);
 
         this.items = this.items.map((e, i) => ({...e, id: i}))

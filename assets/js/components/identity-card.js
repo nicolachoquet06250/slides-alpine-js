@@ -1,6 +1,7 @@
 const identityCard = () => ({
     componentName: 'identity-card',
     $el: null,
+    $parent: null,
 
     get header() {
         return `Framework Javascript`.split(' ')
@@ -93,6 +94,7 @@ const identityCard = () => ({
 
     init() {
         this.$el.setAttribute('data-component', this.componentName);
+        this.$el.parentElement.setAttribute('data-child-component', this.componentName);
         this.$el.setAttribute('x-html', `template`);
     }
 });

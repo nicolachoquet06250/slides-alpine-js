@@ -213,6 +213,26 @@ ul.list li > ol.sub-list {
     width: 0%;
   }
 }
+@keyframes slide_title_next {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+@keyframes slide_title_prev {
+  from {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+}
 section[data-component=slide] {
   flex-shrink: 0;
   height: 100%;
@@ -399,6 +419,26 @@ section[data-component=slide] .previous:before {
     width: 0%;
   }
 }
+@keyframes slide_title_next {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+@keyframes slide_title_prev {
+  from {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+}
 [data-component=sommaire] {
   padding-top: calc(clamp(10px, 2vw, 20px) * 4);
   color: black;
@@ -415,6 +455,33 @@ section[data-component=slide] .previous:before {
   width: 50%;
 }
 
+/*[data-child-component=identity-card] {
+    & h2 {
+        transform: translateX(-15px);
+        opacity: 0;
+        transition: transform 2s linear, opacity 2s linear;
+    }
+}
+
+.is-current [data-child-component=identity-card] {
+    & h2 {
+        transform: translateX(-15px);
+        opacity: 0;
+        transition: transform 2s linear, opacity 2s linear;
+    }
+}
+
+.is-next,
+.is-previous,
+.current {
+    & [data-child-component=identity-card] {
+        & h2 {
+            transform: translateX(0px);
+            opacity: 1;
+            transition: transform 2s linear, opacity 2s linear;
+        }
+    }
+}*/
 [data-component=identity-card] {
   color: black;
   padding-top: 100px;
@@ -646,6 +713,26 @@ section[data-component=slide] .previous:before {
   }
   100% {
     width: 0%;
+  }
+}
+@keyframes slide_title_next {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+@keyframes slide_title_prev {
+  from {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-10px);
+    opacity: 0;
   }
 }
 [data-component=underline-animation] {

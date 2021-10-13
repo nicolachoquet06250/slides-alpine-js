@@ -40,6 +40,13 @@ const slide = () => ({
 
         setTimeout(() => {
             if (this.isSimpleClick) {
+                document.querySelector('[data-component=slide-list]').dispatchEvent(new CustomEvent('slide-next', {
+                    detail: {
+                        id: this.item.id,
+                        nextId: this.item.id + 1
+                    }
+                }));
+
                 let scrollAmount = 0;
                 const slideTimer = setInterval(() => {
                     this.$el.parentElement.parentElement.parentElement.scrollLeft += 10;
@@ -47,6 +54,8 @@ const slide = () => ({
                     scrollAmount += 10;
                     if (scrollAmount >= this.$el.offsetWidth + 15) {
                         clearInterval(slideTimer);
+
+                        document.querySelector('[data-component=slide-list]').dispatchEvent(new CustomEvent('end-slide'));
                     }
                 }, 5);
 
@@ -60,6 +69,13 @@ const slide = () => ({
 
         setTimeout(() => {
             if (this.isSimpleClick) {
+                document.querySelector('[data-component=slide-list]').dispatchEvent(new CustomEvent('slide-previous', {
+                    detail: {
+                        id: this.item.id,
+                        previousId: this.item.id - 1
+                    }
+                }));
+
                 let scrollAmount = 0;
                 const slideTimer = setInterval(() => {
                     this.$el.parentElement.parentElement.parentElement.scrollLeft -= 10;
@@ -67,6 +83,8 @@ const slide = () => ({
                     scrollAmount += 10;
                     if (scrollAmount >= this.$el.offsetWidth + 5) {
                         clearInterval(slideTimer);
+
+                        document.querySelector('[data-component=slide-list]').dispatchEvent(new CustomEvent('end-slide'));
                     }
                 }, 5);
 
@@ -76,6 +94,13 @@ const slide = () => ({
     },
 
     lastSlide() {
+        document.querySelector('[data-component=slide-list]').dispatchEvent(new CustomEvent('slide-next', {
+            detail: {
+                id: this.item.id,
+                nextId: items.length - 1
+            }
+        }));
+
         this.isSimpleClick = false;
 
         let scrollAmount = 0;
@@ -85,11 +110,20 @@ const slide = () => ({
             scrollAmount += 10;
             if (scrollAmount >= Math.max(Array.from(this.$el.parentElement.parentElement.querySelectorAll('section')).reduce((r, c) => r + c.offsetWidth + 5, this.$el.scrollLeft), 0)) {
                 clearInterval(slideTimer);
+
+                document.querySelector('[data-component=slide-list]').dispatchEvent(new CustomEvent('end-slide'));
             }
         }, 5);
     },
 
     firstSlide() {
+        document.querySelector('[data-component=slide-list]').dispatchEvent(new CustomEvent('slide-previous', {
+            detail: {
+                id: this.item.id,
+                previousId: 0
+            }
+        }));
+
         this.isSimpleClick = false;
 
         let scrollAmount = 0;
@@ -99,6 +133,8 @@ const slide = () => ({
             scrollAmount += 10;
             if (scrollAmount >= Math.max(Array.from(this.$el.parentElement.parentElement.querySelectorAll('section')).reduce((r, c) => r + c.offsetWidth + 5, this.$el.scrollLeft), 0)) {
                 clearInterval(slideTimer);
+
+                document.querySelector('[data-component=slide-list]').dispatchEvent(new CustomEvent('end-slide'));
             }
         }, 5);
     },

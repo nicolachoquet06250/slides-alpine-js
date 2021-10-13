@@ -12,6 +12,7 @@
     <script src="assets/js/components/slide.js" defer="defer"></script>
     <script src="assets/js/components/syntaxe.js" defer="defer"></script>
     <script src="assets/js/components/slideshow.js" defer="defer"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@1.2.x/dist/index.min.js" defer="defer"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer="defer"></script>
     <link rel="stylesheet" href="assets/css/app.css" />
 
@@ -26,7 +27,7 @@
             <div>
                 <template x-for="item of items">
                     <div :data-item="JSON.stringify({...item, logos, nbItems: items.length})">
-                        <section x-data="slide()" x-init="init()"></section>
+                        <section x-data="slide()" class="" x-init="init()"></section>
                     </div>
                 </template>
             </div>
