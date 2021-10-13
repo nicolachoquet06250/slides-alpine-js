@@ -222,11 +222,11 @@ const syntaxe = (part = PART_1) => ({
         <div x-data="{
             message: 'Message avec <strong>html</strong>'
         }">
-            <u>Simple text</u> : <span x-text="message"></span>
+            <u>Texte simple</u> : <span x-text="message"></span>
 
             <br>
 
-            <u>Text interprété</u> : <span x-html="message"></div>
+            <u>Texte interprété</u> : <span x-html="message"></div>
         </div>
     `,
 

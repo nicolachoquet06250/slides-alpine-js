@@ -25,7 +25,7 @@ const whatIsIt = (type='avantages') => ({
             ]
         },
         { text: `Pas de virtual-DOM` },
-        { text:/*html*/`Pas d'outillage superflux obligatoir comme <strong>babel</strong> ou <strong>webpack</strong>` },
+        { text:/*html*/`Pas d'outillage superflux obligatoire comme <strong>babel</strong> ou <strong>webpack</strong>` },
         { text: `Principalement utile pour du rendu côté server` },
         { text: `Non adapté pour des SPA avec routage` },
         { text: `Emprunte sa syntaxe à Vue.js en remplaçant les "v-" par des "x-" dans ses directives` },
@@ -95,7 +95,7 @@ const whatIsIt = (type='avantages') => ({
         },
         {
             text: [
-                'Possède des "modifieurs" cumulables sur les évenements',
+                'Possède des "modificateurs" cumulables sur les évènements',
                 `<span style="margin-left: 25px;">Exemples: </span>`
             ],
             list: [
